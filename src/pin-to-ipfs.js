@@ -42,7 +42,8 @@ module.exports = async (name, filePath) => {
     data.append('pinataOptions', pinataOptions)
 
     const response = await pinata.post('/pinning/pinFileToIPFS', data, {
-        maxBodyLength: 'Infinity', // this is needed to prevent axios from erroring out with large files
+        // maxBodyLength: 'Infinity', // this is needed to prevent axios from erroring out with large files
+        timeout: 10000,
         headers: {
             'Content-Type': `multipart/form-data; boundary=${data._boundary}`
         }
